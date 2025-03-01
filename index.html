@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twister Roulette</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .ruleta-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: auto;
+        }
+
+        .ruleta {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: transform 3s ease-out;
+        }
+
+        .flecha {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+            font-size: 32px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .boton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Gira la Ruleta</h1>
+    <div class="ruleta-container">
+        <div class="flecha">▼</div>
+        <canvas id="ruleta" class="ruleta"></canvas>
+    </div>
+    <button class="boton" onclick="girarRuleta()">Girar</button>
+    <div id="resultado"></div>
+
+    <script>
+        const canvas = document.getElementById("ruleta");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 300;
+        canvas.height = 300;
+
+        const colors = [
+            ...Array(17).fill("red"), // 85% rojo (17 segmentos)
+            "blue", "yellow", "green" // 5% cada uno
+        ];
+        const angles = 360 / colors.length;
+
+        function drawRoulette() {
+            for (let i = 0; i < colors.length; i++) {
+                ctx.beginPath();
+                ctx.moveTo(150, 150);
+                ctx.arc(150, 150, 150, (i * angles) * Math.PI / 180, ((i + 1) * angles) * Math.PI / 180);
+                ctx.closePath();
+                ctx.fillStyle = colors[i];
+                ctx.fill();
+            }
+        }
+
+        let rotation = 0;
+        function girarRuleta() {
+            let randomSpin = Math.floor(Math.random() * 3600) + 1800;
+            rotation += randomSpin;
+            canvas.style.transform = `rotate(${rotation}deg)`;
+
+            setTimeout(() => {
+                const finalRotation = (rotation % 360);
+                const selectedIndex = Math.floor((360 - finalRotation) / angles) % colors.length;
+                document.getElementById("resultado").innerText = `Color ganador: ${colors[selectedIndex].toUpperCase()}`;
+            }, 3000); // Esperar a que termine de girar
+        }
+
+        drawRoulette();
+    </script>
+</body>
+
+</html>
