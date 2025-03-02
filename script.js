@@ -40,8 +40,9 @@ function girarRuleta() {
         const selectedIndex = Math.floor((360 - finalRotation) / angles) % colors.length;
         document.getElementById("resultado").innerText = `Ha salido el color ${spanishColors[colors[selectedIndex]].toUpperCase()}`;
         document.getElementById("resultado").style.color = colors[selectedIndex];
+        document.getElementById("boton").style.backgroundColor = colors[selectedIndex];
         document.getElementById("boton").disabled = false;
-    }, 3000); // Esperar a que termine de girar
+    }, 3000);
 
 
 

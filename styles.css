@@ -1,6 +1,12 @@
 body {
     font-family: Arial, sans-serif;
+    font-size: 1.3rem;
     height: 98vh;
+    ;
+}
+
+#title {
+    color: red;
 }
 
 main {
@@ -31,9 +37,9 @@ main {
 
 .flecha {
     position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 130px;
+    left: 105%;
+    transform: translateX(-50%) rotate(90deg);
     font-size: 32px;
     color: black;
     font-weight: bold;
