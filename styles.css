@@ -1,10 +1,14 @@
 body {
+    font-family: Arial, sans-serif;
+    height: 98vh;
+}
+
+main {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 98vh;
-    font-family: Arial, sans-serif;
+    height: 100%;
 }
 
 .ruleta-container {
@@ -27,15 +31,15 @@ body {
 
 .flecha {
     position: absolute;
-    bottom: -40px;
+    bottom: -30px;
     left: 50%;
-    transform: translateX(-50%) rotate(180deg);
+    transform: translateX(-50%);
     font-size: 32px;
     color: black;
     font-weight: bold;
 }
 
-.boton {
+#boton {
     border-radius: 20px;
     background-color: red;
     color: white;
